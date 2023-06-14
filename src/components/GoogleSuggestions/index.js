@@ -7,9 +7,11 @@ class GoogleSuggestions extends Component {
   state = {searchInput: ''}
 
   onDisplay = value => {
-    const toUpper = value.toLowerCase()
-    this.setState({searchInput: toUpper})
-    console.log(toUpper)
+    this.setState({searchInput: value})
+  }
+
+  onchange = event => {
+    this.setState({searchInput: event.target.value})
   }
 
   render() {
@@ -18,10 +20,6 @@ class GoogleSuggestions extends Component {
     const updatedSearch = suggestionsList.filter(each =>
       each.suggestion.toLowerCase().includes(searchInput),
     )
-
-    onchange = event => {
-      this.setState({searchInput: event.target.value})
-    }
 
     return (
       <div className="bg-container">
@@ -43,7 +41,7 @@ class GoogleSuggestions extends Component {
                 placeholder="Search Google"
                 type="search"
                 value={searchInput}
-                onChange={onchange}
+                onChange={this.onchange}
               />
             </div>
 
